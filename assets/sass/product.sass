@@ -1,0 +1,74 @@
+.product
+  &__list
+    display: grid
+    gap: 30px
+    grid-template-columns: 1fr
+    width: 100%
+  &__item
+    display: grid
+    gap: 30px
+    grid-template-columns: 300px 1fr 1fr
+  &__wrap
+    display: flex
+    align-items: flex-start
+    justify-content: flex-start
+    gap: 25px
+    margin-top: 30px
+  &__left
+    display: flex
+    flex-direction: column
+    gap: 30px
+    width: 25vw
+    flex-shrink: 0
+  .img
+    flex-shrink: 0
+    border-radius: 5px
+  &__name
+    font: 500 20px/1.2 $mainFont
+  &__short
+    font: 400 18px/1.2 $mainFont
+
+  &__qty
+      background: transparent
+      font-size: 24px
+  &__price
+    font-size: 30px
+  &__right
+    width: 100%
+    display: flex
+    flex-direction: column
+    gap: 30px
+  .variations
+    margin-bottom: 30px
+    tbody
+      width: 100%
+      display: grid
+      grid-template-columns: 1fr
+      gap: 30px
+    tr:not(.hidden)
+      display: flex
+      flex-direction: column
+    .label
+      text-align: left
+      margin-bottom: .3em
+    ul
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      gap: 10px
+      flex-wrap: wrap
+    li
+      cursor: pointer
+      min-width: 35px
+      height: 35px
+      border-radius: 6px
+      display: flex
+      align-items: center
+      justify-content: center
+      border: 2px solid #000
+      white-space: nowrap
+      padding: 0 5px
+
+      &.selected
+        border-color: $accent
+        font-weight: 500

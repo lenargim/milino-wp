@@ -1,0 +1,102 @@
+@use 'sass:math'
+// USER VARIABLES SECTION
+$mainFont: 'Inter', sans-serif
+
+$beige25: #F9F7F6
+$beige100: #FBCEB1
+
+$accent25: #F5F9FF
+$accent50: #E0EDFF
+$accent100: #CCE1FF
+$accent200: #99C4FF
+$accent300: #66A6FF
+$accent400: #3D8EFF
+$accent500: #006AEB
+$accent600: #0059D6
+$accent700: #003E94
+$accent800: #00265C
+$accent900: #00122E
+
+$gray25: #F6F6F8
+$gray50: #E9EBED
+$gray100: #DDE0E4
+$gray200: #BAC1C9
+$gray300: #9BA4B0
+$gray400: #8791A1
+$gray500: #657181
+$gray600: #535D6A
+$gray700: #3D434C
+$gray800: #24282E
+$gray900: #121417
+
+$success25: #EEFBF2
+$success50: #C7F5D5
+$success100: #A3F0BE
+$success200: #6BD18F
+$success300: #2CBA67
+$success400: #00A352
+$success500: #00803E
+$success600: #006B32
+$success700: #004D22
+$success800: #002E12
+$success900: #002E12
+
+$destructive25: #FEF6F6
+$destructive50: #FCE4E4
+$destructive100: #FBD5D5
+$destructive200: #F8AFAF
+$destructive300: #F67E7E
+$destructive400: #F55B5B
+$destructive500: #DB2424
+$destructive600: #B51C1C
+$destructive700: #871212
+$destructive800: #590808
+$destructive900: #310202
+
+$warning25: #FFF6DB
+$warning50: #FFE8A3
+$warning100: #FFDD75
+$warning200: #FFB429
+$warning300: #F78F08
+$warning400: #E66B00
+$warning500: #C24A00
+$warning600: #A83200
+$warning700: #802400
+$warning800: #4D1600
+$warning900: #290B00
+
+$yellow25: #FFF8C2
+$yellow50: #FFEB8A
+$yellow100: #FFDE5C
+$yellow200: #FFBB00
+$yellow300: #FF9D00
+$yellow400: #D17D00
+$yellow500: #A86500
+$yellow600: #8A5300
+$yellow700: #613A00
+$yellow800: #3D2500
+$yellow900: #1F1300
+
+$desktop: 1920
+$notebook: 1366
+$netbook: 1280
+$tabletG: 1024
+$tabletV: 768
+$mobile: 295
+
+$accent: #FFCE90
+$accentLight: #FFD8A7
+$textLink: #3B9BFF
+$red: #CB4141
+
+@mixin max($breakpoint)
+  @media screen and (max-width: ($breakpoint) + 'px')
+    @content
+
+@mixin min($breakpoint)
+  @media screen and (min-width: $breakpoint + 'px')
+    @content
+
+@mixin between($min, $max)
+  @media screen and (min-width: $min + 'px') and (max-width: $max - 1 + 'px')
+    @content

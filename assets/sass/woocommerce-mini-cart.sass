@@ -1,0 +1,91 @@
+.woocommerce-mini-cart
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  gap: 10px
+  flex-grow: 1
+  &-item
+    display: flex
+    flex-direction: column
+    gap: 5px
+    padding-bottom: 5px
+    border-bottom: 2px solid $accent
+    .top
+      display: flex
+      align-items: flex-start
+      justify-content: flex-start
+      gap: 15px
+    .img
+      width: 60px
+    .remove
+      cursor: pointer
+      font-size: 26px
+      color: $red
+    .name
+      font: 500 24px/1.2 $mainFont
+    .variation
+      font: 400 14px/1.15 $mainFont
+    .quantity
+      display: inline-block
+      font-weight: 500
+      margin-top: .5em
+  &__total
+    margin-top: 1em
+    font-size: 18px
+  &__buttons
+    margin-top: 20px
+    display: grid
+    grid-template-columns: 1fr 1fr
+    gap: 15px
+
+
+.add-to-cart-message
+  position: fixed
+  bottom: 10px
+  animation: message 2s linear 0.2s forwards
+  background: $success200
+  padding: 15px 50px
+  font-size: 18px
+  border-radius: 20px
+  color: #fff
+
+.single_variation_wrap
+  display: flex
+  align-items: center
+  gap: 30px
+
+.woocommerce-order
+  width: 100vw
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  h2
+    text-align: center
+  li
+    text-align: center
+  .button
+    margin: 0 auto
+.woocommerce-error
+  position: fixed
+  left: 30px
+  bottom: 30px
+  z-index: 1
+  border-radius: 10px
+  padding: 10px 30px
+  background: #fff
+  color: $red
+  font-size: 20px
+  display: flex
+  flex-direction: column
+  gap: 10px
+  animation: message 4s linear 0.2s forwards
+
+@keyframes message
+  0%
+    opacity: 1
+  80%
+    opacity: 1
+  100%
+    display: none
+    opacity: 0
