@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying products in a product category. Simply includes the archive template
+ * Loop Price
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/taxonomy-product-cat.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/loop/price.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -12,11 +12,16 @@
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
- * @version     4.7.0
+ * @version     1.6.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly
 }
 
-wc_get_template( 'archive-product.php' ); ?>
+global $product;
+?>
+
+<?php if ( $price_html = $product->get_price_html() ) : ?>
+	<span class="price"><?php echo $price_html; ?></span>
+<?php endif; ?>
