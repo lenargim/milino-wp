@@ -23,82 +23,69 @@ do_action('woocommerce_before_mini_cart'); ?>
 
 <?php if (!WC()->cart->is_empty()) : ?>
 
-  <ul class="woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr($args['list_class']); ?>">
-			<?php
-			do_action('woocommerce_before_mini_cart_contents');
-
-			foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-				$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
-				$product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
-
-				if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key)) {
-					/**
-						* This filter is documented in woocommerce/templates/cart/cart.php.
-						*
-						* @since 2.1.0
-						*/
-					$product_name = apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key);
-					$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
-					$product_price = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
-					$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
-					?>
-      <li class="woocommerce-mini-cart-item <?php echo esc_attr(apply_filters('woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key)); ?>">
-        <div class="top">
-									<?php
-//									echo apply_filters(
-//										'woocommerce_cart_item_remove_link',
-//										sprintf(
-//											'<a href="%s" class="remove remove_from_cart_button" title="Remove from cart" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
-//											esc_url(wc_get_cart_remove_url($cart_item_key)),
-//											/* translators: %s is the product name */
-//											esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
-//											esc_attr($product_id),
-//											esc_attr($cart_item_key),
-//											esc_attr($_product->get_sku())
-//										),
-//										$cart_item_key
-//									);
-//									?>
-          <div class="remove" data-key="<?php echo $cart_item_key;?>">&times;</div>
-          <div class="img"><?php echo $thumbnail; ?></div>
-          <div class="name"><?php echo wp_kses_post($product_name); ?></div>
-        </div>
-        <div class="data">
-									<?php echo wc_get_formatted_cart_item_data($cart_item); ?>
-									<?php echo apply_filters('woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf('%s &times; %s', $cart_item['quantity'], $product_price) . '</span>', $cart_item, $cart_item_key); ?>
-        </div>
-      </li>
+  <div class="woocommerce-mini-cart__content">
+    <ul class="woocommerce-mini-cart cart_list product_list_widget <?php echo esc_attr($args['list_class']); ?>">
 					<?php
-				}
-			}
+					do_action('woocommerce_before_mini_cart_contents');
 
-			do_action('woocommerce_mini_cart_contents');
-			?>
-  </ul>
+					foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+						$_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
+						$product_id = apply_filters('woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key);
 
-  <p class="woocommerce-mini-cart__total total">
-			<?php
-			/**
-				* Hook: woocommerce_widget_shopping_cart_total.
-				*
-				* @hooked woocommerce_widget_shopping_cart_subtotal - 10
-				*/
-			do_action('woocommerce_widget_shopping_cart_total');
-			?>
-  </p>
+						if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_widget_cart_item_visible', true, $cart_item, $cart_item_key)) {
+							/**
+								* This filter is documented in woocommerce/templates/cart/cart.php.
+								*
+								* @since 2.1.0
+								*/
+							$product_name = apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key);
+							$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
+							$product_price = apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key);
+							$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
+							?>
+        <li class="woocommerce-mini-cart-item <?php echo esc_attr(apply_filters('woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key)); ?>">
+          <div class="top">
+            <div class="remove" data-key="<?php echo $cart_item_key; ?>">&times;</div>
+            <div class="img"><?php echo $thumbnail; ?></div>
+            <div class="name"><?php echo wp_kses_post($product_name); ?></div>
+          </div>
+          <div class="data">
+											<?php echo wc_get_formatted_cart_item_data($cart_item); ?>
+											<?php echo apply_filters('woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf('%s &times; %s', $cart_item['quantity'], $product_price) . '</span>', $cart_item, $cart_item_key); ?>
+          </div>
+        </li>
+							<?php
+						}
+					}
 
-	<?php do_action('woocommerce_widget_shopping_cart_before_buttons'); ?>
-
-  <div class="woocommerce-mini-cart__buttons buttons">
-    <a href="/shop-custom" class="button">Back to shop</a>
-    <a href="/checkout" class="button">Checkout</a>
+					do_action('woocommerce_mini_cart_contents');
+					?>
+    </ul>
   </div>
 
+	<?php do_action('woocommerce_widget_shopping_cart_before_buttons'); ?>
+  <div class="woocommerce-mini-cart__buttons buttons">
+    <p class="woocommerce-mini-cart__total total">
+					<?php
+					/**
+						* Hook: woocommerce_widget_shopping_cart_total.
+						*
+						* @hooked woocommerce_widget_shopping_cart_subtotal - 10
+						*/
+					do_action('woocommerce_widget_shopping_cart_total');
+					?>
+    </p>
+    <a href="/cabinets" class="button">&#x2190; Back to Cabinets</a>
+    <a href="/checkout" class="button">Checkout &#x2192;</a>
+  </div>
 	<?php do_action('woocommerce_widget_shopping_cart_after_buttons'); ?>
 
-<?php else : ?>
 
-  <p class="woocommerce-mini-cart__empty-message"><?php esc_html_e('No products in the cart.', 'woocommerce'); ?></p>
+<?php else : ?>
+  <div class="woocommerce-mini-cart__content">
+    <p class="woocommerce-mini-cart__empty-message"><?php esc_html_e('No products in the cart.', 'woocommerce'); ?></p>
+  </div>
+    <a href="/cabinets" class="button sidebar__back">&#x2190; Back to Cabinets</a>
 
 <?php endif; ?>
 

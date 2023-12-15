@@ -50,7 +50,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 					<?php endif; ?>
 
       <div class="checkout__buttons">
-        <a href="/shop-custom" class="button">Back to shop</a>
+        <button onclick="window.history.back()" type="button" class="button">Back</button>
 							<?php do_action('woocommerce_review_order_before_submit'); ?>
 							<?php echo apply_filters('woocommerce_order_button_html', '<button type="submit" class="button checkout__submit alt' . esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : '') . '" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>'); ?>
 							<?php do_action('woocommerce_review_order_after_submit'); ?>
@@ -60,6 +60,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
     </form>
   </div>
   <aside class="checkout__sidebar sidebar">
+   <div class="sidebar__container">
 
 			<?php do_action('woocommerce_checkout_before_order_review_heading'); ?>
 
@@ -72,6 +73,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
     </div>
 
 			<?php do_action('woocommerce_checkout_after_order_review'); ?>
+   </div>
   </aside>
 </div>
 <?php do_action('woocommerce_after_checkout_form', $checkout); ?>

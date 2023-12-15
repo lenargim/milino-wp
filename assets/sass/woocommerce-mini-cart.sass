@@ -29,14 +29,26 @@
       display: inline-block
       font-weight: 500
       margin-top: .5em
+  &__content
+    width: 100%
+    padding: 30px 15px
+    height: calc(100% - 200px)
+    overflow-y: auto
+    position: relative
   &__total
     margin-top: 1em
     font-size: 18px
   &__buttons
-    margin-top: 20px
-    display: grid
-    grid-template-columns: 1fr 1fr
+    position: absolute
+    padding: 15px
+    bottom: 0
+    width: 100%
+    height: 200px
+    display: flex
+    flex-direction: column
     gap: 15px
+    justify-content: flex-end
+    box-shadow: -13px 10px 32px -3px rgba(0,0,0,0.41)
 
 
 .add-to-cart-message
@@ -48,10 +60,11 @@
   font-size: 18px
   border-radius: 20px
   color: #fff
+  z-index: 5
 
 .single_variation_wrap
   display: flex
-  align-items: center
+  flex-direction: column
   gap: 30px
 
 .woocommerce-order
@@ -82,12 +95,14 @@
   animation: message 4s linear 0.2s forwards
 
 
-.woocommerce-order__data
-  margin-top: 30px
-  display: flex
-  flex-direction: column
-  align-items: center
-  font: 500 18px/1.2 $mainFont
+.woocommerce-order
+  &__data
+    margin-top: 30px
+    display: flex
+    flex-direction: column
+    align-items: center
+    font: 500 18px/1.2 $mainFont
+    text-align: center
 
 @keyframes message
   0%

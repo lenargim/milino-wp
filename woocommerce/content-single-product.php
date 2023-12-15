@@ -36,7 +36,7 @@ if (post_password_required()) {
 
     <div class="product__left">
 					<?php
-          wc_get_template( 'single-product/title.php' );
+					wc_get_template('single-product/title.php');
 					$image_id = $product->get_image_id();
 					$image_url = wp_get_attachment_image_url($image_id, 'full');
 					?>
@@ -48,7 +48,70 @@ if (post_password_required()) {
 							<?php endif; ?>
       </div>
 
-      <div class="product__short"><?php echo $product->get_short_description(); ?></div>
+      <div class="product__tags"><?php
+							$tags = $product->tag_ids;
+							foreach ($tags as $tag):?>
+         <span><?php echo get_term($tag)->name; ?></span>
+							<?php endforeach; ?>
+      </div>
+      <div class="product__attributes">
+							<?php if (isset($_COOKIE["product_cat"])):
+								$category = json_decode(stripslashes($_COOKIE["product_cat"])); ?>
+         <div class="sidebar__attribute">
+           <div>Room:</div>
+           <div><?php echo $category; ?></div>
+         </div>
+							<?php endif; ?>
+
+							<?php if (isset($_COOKIE["door"])):
+								$doorArr = json_decode(stripslashes($_COOKIE["door"]));
+								foreach ($doorArr as $index => $cat):
+									if ($index === 0) {
+										$label = 'Door type';
+									} else if ($index === 1) {
+										$label = 'Door Finish material';
+									} else if ($index === 2) {
+										$label = 'Door finish color';
+									}
+									?>
+
+          <div class="sidebar__attribute">
+            <div><?php echo $label ?>:</div>
+            <div><?php echo $cat; ?></div>
+          </div>
+								<?php endforeach; ?>
+							<?php endif; ?>
+
+							<?php if (isset($_COOKIE["box_material"])):
+								$box = json_decode(stripslashes($_COOKIE["box_material"]));
+
+								?>
+
+         <div class="sidebar__attribute">
+           <div>Box Material:</div>
+           <div><?php echo $box; ?></div>
+         </div>
+							<?php endif; ?>
+
+							<?php if (isset($_COOKIE["drawer"])):
+								$drawerArr = json_decode(stripslashes($_COOKIE["drawer"]));
+								foreach ($drawerArr as $index => $cat):
+									if ($index === 0) {
+										$label = 'Drawer Brand';
+									} else if ($index === 1) {
+										$label = 'Drawer Type';
+									} else if ($index === 2) {
+										$label = 'Drawer color';
+									}
+									?>
+
+          <div class="sidebar__attribute">
+            <div><?php echo $label ?>:</div>
+            <div><?php echo $cat; ?></div>
+          </div>
+								<?php endforeach; ?>
+							<?php endif; ?>
+      </div>
     </div>
 
     <div class="product__right">
@@ -71,6 +134,8 @@ if (post_password_required()) {
 
 
   </div>
+
+  <?php do_action( 'woocommerce_after_single_product_summary' ); ?>
 </div>
 
 <?php do_action('woocommerce_after_single_product'); ?>

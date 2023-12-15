@@ -27,20 +27,27 @@ defined('ABSPATH') || exit;
     <span class="product-name">
 				<?php echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key)) . '&nbsp;'; ?>
         </span>
-			<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <span class="product-quantity">' . sprintf('&times;&nbsp;%s', $cart_item['quantity']) . '</span>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <span class="product-quantity">' . sprintf('&times;&nbsp;%s', $cart_item['quantity']) . '</span>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 
-			<?php echo wc_get_formatted_cart_item_data($cart_item); ?>
+					<?php echo wc_get_formatted_cart_item_data($cart_item); ?>
+      <div class="product-note">
+							<?php
+							if (isset($cart_item['product_note_field'])):
+								echo '*' . $cart_item['product_note_field'];
+							endif;
+							?>
       </div>
+    </div>
 		<?php endif;
 	endforeach;
 	?>
 
 	<?php do_action('woocommerce_review_order_before_order_total'); ?>
- <div class="total">
-   <span><?php esc_html_e('Total', 'woocommerce'); ?>:</span>
-   <span><?php wc_cart_totals_order_total_html(); ?></span>
- </div>
+  <div class="total">
+    <span><?php esc_html_e('Total', 'woocommerce'); ?>:</span>
+    <span><?php wc_cart_totals_order_total_html(); ?></span>
+  </div>
 
 	<?php do_action('woocommerce_review_order_after_order_total'); ?>
 

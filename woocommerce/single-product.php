@@ -20,12 +20,6 @@ if (!defined('ABSPATH')) {
 }
 
 
-if (!isset($_COOKIE['attributes'])) {
-	wp_redirect('/shop-custom');
-}
-
-
-
 ?>
 
 <?php get_template_part('parts/header/head'); ?>
@@ -60,14 +54,7 @@ if (!isset($_COOKIE['attributes'])) {
 							do_action('woocommerce_after_main_content');
 							?>
 
-							<?php
-							/**
-								* woocommerce_sidebar hook.
-								*
-								* @hooked woocommerce_get_sidebar - 10
-								*/
-							//		do_action( 'woocommerce_sidebar' );
-							?>
+
       </div>
     </div>
     <aside class="sidebar product-aside">

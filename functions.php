@@ -109,3 +109,4 @@ add_action( 'customize_register', 'blank_customize_register', 100 );
 
 require_once( dirname(__FILE__) . '/functions-custom.php');
 require_once( dirname(__FILE__) . '/functions-ajax.php');
+require_once( dirname(__FILE__) . '/functions-product.php');

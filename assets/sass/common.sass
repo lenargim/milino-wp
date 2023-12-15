@@ -144,6 +144,7 @@ input, textarea
   border: none
   outline: none
   width: 100%
+  padding: 0
 
 textarea
   resize: none
@@ -192,13 +193,14 @@ svg
 
 .loading
   position: fixed
-  display: inline-block
   width: 100vw
   height: 100vh
   left: 0
   top: 0
   z-index: 10
   backdrop-filter: blur(2px)
+  display: none
+
   .loading-box
     position: absolute
     width: 20vw
