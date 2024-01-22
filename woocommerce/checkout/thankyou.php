@@ -65,10 +65,13 @@ defined('ABSPATH') || exit;
           </li>
 								<?php endif; ?>
 
-         <li class="woocommerce-order-overview__total total">
-										<?php esc_html_e('Total:', 'woocommerce'); ?>
-           <strong><?php echo $order->get_formatted_order_total(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-         </li>
+        <?php
+        if (!is_custom_price_order($order->get_items())):?>
+          <li class="woocommerce-order-overview__total total">
+											<?php esc_html_e('Total:', 'woocommerce'); ?>
+            <strong><?php echo $order->get_formatted_order_total(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
+          </li>
+         <?php endif; ?>
 
 								<?php if ($order->get_payment_method_title()) : ?>
           <li class="woocommerce-order-overview__payment-method method">

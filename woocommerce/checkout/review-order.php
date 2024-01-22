@@ -45,8 +45,13 @@ defined('ABSPATH') || exit;
 
 	<?php do_action('woocommerce_review_order_before_order_total'); ?>
   <div class="total">
-    <span><?php esc_html_e('Total', 'woocommerce'); ?>:</span>
-    <span><?php wc_cart_totals_order_total_html(); ?></span>
+   <?php
+			if (is_custom_price(WC()->cart->get_cart())):
+				echo 'Total price unknown because of customisation';
+			else:
+				esc_html_e('Total:', 'woocommerce') . wc_cart_totals_order_total_html();
+			endif;
+   ?>
   </div>
 
 	<?php do_action('woocommerce_review_order_after_order_total'); ?>

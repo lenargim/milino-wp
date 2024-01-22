@@ -7,12 +7,6 @@ $(document).ready(function () {
       isMain: 1,
       type: 'product_cat',
     },
-    // {
-    //   slug: 'cabinet-type',
-    //   name: 'Cabinet type',
-    //   isMain: 0,
-    //   type: 'product_cat',
-    // },
     {
       slug: 'door-type',
       name: 'Door Type',
@@ -221,6 +215,21 @@ $(document).ready(function () {
 
       }
     });
+  })
+
+  $('.variations_form').on('change', function () {
+    const widthSelect = $(this).find('#pa_width');
+    const input = $('.custom-width-input');
+    if (widthSelect) {
+      if (widthSelect.val() === 'custom-width') {
+        input.show();
+        input.attr("required", true);
+      } else {
+        input.hide();
+        input.attr("required", false);
+        input.val('');
+      }
+    }
   })
 })
 

@@ -19,10 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <table class="variation">
+
 	<?php foreach ( $item_data as $data ) : ?>
 		<tr class="<?php echo sanitize_html_class( 'variation-' . $data['key'] ); ?>">
       <td><?php echo wp_kses_post( $data['key'] ); ?>:</td>
-      <td><?php echo wp_kses_post( $data['display'] ); ?></td>
+      <td>
+       <?php echo wp_kses_post( $data['display'] ); ?>
+      </td>
     </tr>
 	<?php endforeach; ?>
 </table>

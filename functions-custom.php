@@ -214,3 +214,21 @@ function custom_taxonomy_Item()
 	register_taxonomy('drawer', 'product', $argsDrawer);
 	register_taxonomy_for_object_type('drawer', 'product');
 }
+
+
+function is_custom_price($array){
+	foreach ($array as $val):
+		if(is_array($val) && isset($val['product_custom_width'])) return true;
+	endforeach;
+	return false;
+}
+
+function is_custom_price_order($array){
+	foreach ($array as $val):
+		$width = $val->get_meta( 'Custom Width Field', true );
+		if ($width) {
+			return true;
+		}
+	endforeach;
+	return false;
+}

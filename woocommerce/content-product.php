@@ -60,16 +60,16 @@ if (empty($product) || !$product->is_visible()) {
     </div>
 		<?php endif; ?>
 
-    <span>Price:</span>
-			<?php
-			$min_price = $product->get_variation_price('min');
-			$max_price = $product->get_variation_price('max');
-			if ($min_price !== $max_price): ?>
-     <span><?php echo $min_price ?>$</span>-
-     <span><?php echo $max_price ?>$</span>
-			<?php else: ?>
-     <span><?php echo $min_price ?>$</span>
-			<?php endif; ?>
+<!--    <span>Price:</span>-->
+<!--			--><?php
+//			$min_price = $product->get_variation_price('min');
+//			$max_price = $product->get_variation_price('max');
+//			if ($min_price !== $max_price): ?>
+<!--     <span>--><?php //echo $min_price ?><!--$</span>--->
+<!--     <span>--><?php //echo $max_price ?><!--$</span>-->
+<!--			--><?php //else: ?>
+<!--     <span>--><?php //echo $min_price ?><!--$</span>-->
+<!--			--><?php //endif; ?>
 
 
   </div>

@@ -44,12 +44,12 @@ get_template_part('parts/header/head');
                          id="<?php echo $category->slug; ?>"
                          class="filter-cabinets"
                   >
-                  <label for="<?php echo $category->slug; ?>" class="img category-hover">
+                  <label for="<?php echo $category->slug; ?>" class="category-hover button">
                     <span><?php echo $category->name ?></span>
 																			<?php $thumbnail_id = get_term_meta($category->term_id, 'thumbnail_id', true);
 																			$term_img = wp_get_attachment_url($thumbnail_id); ?>
-                    <img src="<?php echo $term_img ? $term_img : IMAGES_PATH . 'no-img.jpeg' ?>"
-                         alt="<?php echo $category->name; ?>">
+<!--                    <img src="--><?php //echo $term_img ? $term_img : IMAGES_PATH . 'no-img.jpeg' ?><!--"-->
+<!--                         alt="--><?php //echo $category->name; ?><!--">-->
                   </label>
                 </div>
 														<?php endforeach; ?>
