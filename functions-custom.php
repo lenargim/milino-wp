@@ -16,6 +16,15 @@ function my_theme_enqueue_scripts()
 	wp_localize_script('ajax_scripts', 'ajaxVar', array('ajaxurl' => admin_url('admin-ajax.php')));
 	wp_enqueue_script('ajax_scripts');
 
+
+	//Add the Select2 CSS file
+	wp_enqueue_style( 'select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0-rc.0');
+
+	//Add the Select2 JavaScript file
+	wp_enqueue_script( 'select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', 'jquery', '4.1.0-rc.0');
+
+	//Add a JavaScript file to initialize the Select2 elements
+//	wp_enqueue_script( 'select2-init', '/wp-content/plugins/select-2-tutorial/select2-init.js', 'jquery', '4.1.0-rc.0');
 }
 
 add_action('wp_default_scripts', function ($scripts) {
@@ -23,6 +32,8 @@ add_action('wp_default_scripts', function ($scripts) {
 		$scripts->registered['jquery']->deps = array_diff($scripts->registered['jquery']->deps, ['jquery-migrate']);
 	}
 });
+
+
 
 
 add_filter('woocommerce_enqueue_styles', '__return_false');
@@ -107,14 +118,17 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30
 remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5);
 
 
-add_filter('wc_add_to_cart_message', 'custom_add_to_cart_message', 10, 2);
-function custom_add_to_cart_message($message, $product_id)
+add_filter('wc_add_to_cart_message_html', 'custom_add_to_cart_message', 10, 2);
+function custom_add_to_cart_message($message, $products)
 {
 
 	if ($message) {
-		$product = wc_get_product($product_id);
-		$html = '<div class="add-to-cart-message">Thank you for adding product ' . $product->get_title() . '</div>';
-		return $html;
+		foreach( $products as $product_id => $quantity ){
+			$product = wc_get_product($product_id);
+			$title = $product->get_title();
+			return 'Thank you for adding product ' . $title;
+		}
+//		$html = '<div class="add-to-cart-message">Thank you for adding product ' . $product->get_title() . '</div>';
 	}
 }
 

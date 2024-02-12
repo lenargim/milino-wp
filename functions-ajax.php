@@ -99,7 +99,7 @@ function get_material_filter_arguments()
 	$args = [
 		'status' => 'publish',
 		'limit' => -1,
-		'type' => 'variable',
+//		'type' => 'variable',
 		'order' => 'ASC',
 		'orderby' => 'ID',
 		'category' => $category,

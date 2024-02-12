@@ -49,7 +49,7 @@ if (post_password_required()) {
       </div>
 
       <div class="product__tags"><?php
-							$tags = $product->tag_ids;
+							$tags = $product->get_tag_ids();
 							foreach ($tags as $tag):?>
          <span><?php echo get_term($tag)->name; ?></span>
 							<?php endforeach; ?>

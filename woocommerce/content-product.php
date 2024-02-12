@@ -34,7 +34,7 @@ if (empty($product) || !$product->is_visible()) {
   <div class="product__info">
     <div class="product__taxonomy">
       <span>Category:</span>
-					<?php echo wc_get_product_category_list($product->ID); ?>
+					<?php echo wc_get_product_category_list($product->get_id()); ?>
     </div>
 			<?php $term_names = wp_get_post_terms($product->get_id(), 'door', ['fields' => 'names', 'orderby' => 'id']);
 			if (count($term_names)): ?>
